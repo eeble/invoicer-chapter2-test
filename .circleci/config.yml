@@ -12,7 +12,12 @@ jobs:
       only:
         - master
     steps:
-      - run: echo 'export CIRCLE_WORKING_DIRECTORY="/go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"'
+      - run:
+          name: Workaround for working_directory issue
+          command: >
+            echo 'export CIRCLE_WORKING_DIRECTORY="/go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"';
+            mkdir -p "/go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}";
+        
       - checkout
       - setup_remote_docker
 

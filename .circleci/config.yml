@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     working_directory: github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
-    machine:
-      enabled: true
+    docker:
+      - image: circleci/golang:1.8
     environment:
       GO15VENDOREXPERIMENT: 1
     branches:

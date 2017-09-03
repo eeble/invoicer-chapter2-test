@@ -28,6 +28,7 @@ jobs:
       - run:
           name: Testing application
           command: >
+            cd ${CIRCLE_WORKING_DIRECTORY};
             go test
             github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
 

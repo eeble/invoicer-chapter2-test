@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     # Variable expansion in working_directory not supported at this time
-    #working_directory: /go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
-    #working_directory: /go/src/github.com/securingdevops
+    # You will need to modify the code below to reflect your github account/repo setup
+    working_directory: /go/src/github.com/eeble/invoicer-chapter2
     docker:
       - image: circleci/golang:1.8
     environment:
@@ -12,12 +12,6 @@ jobs:
       only:
         - master
     steps:
-      - run:
-          name: Workaround for working_directory issue
-          command: >
-            echo 'export CIRCLE_WORKING_DIRECTORY="/go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"';
-            mkdir -p "/go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}";
-        
       - checkout
       - setup_remote_docker
 
@@ -33,7 +27,6 @@ jobs:
       - run:
           name: Testing application
           command: >
-            cd /go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME};
             go test
             github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
 

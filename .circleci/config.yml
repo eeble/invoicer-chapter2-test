@@ -1,7 +1,9 @@
 version: 2
 jobs:
   build:
-    working_directory: /go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
+    # Variable expansion in working_directory not supported at this time
+    #working_directory: /go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
+    #working_directory: /go/src/github.com/securingdevops
     docker:
       - image: circleci/golang:1.8
     environment:
@@ -10,6 +12,7 @@ jobs:
       only:
         - master
     steps:
+      - run: echo 'export CIRCLE_WORKING_DIRECTORY="/go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"'
       - checkout
       - setup_remote_docker
 

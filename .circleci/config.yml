@@ -22,7 +22,9 @@ jobs:
           
       - run:
           name: Testing application
-          command: go test github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
+          command: >
+            go test
+            github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
 
       - deploy:
           command: |
